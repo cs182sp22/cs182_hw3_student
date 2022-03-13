@@ -6,7 +6,16 @@ You will also train a Transformer to summarize news articles.
 ## Setup
 Make sure your machine is set up with the assignment dependencies.
 
-### [Option 1] Install Anaconda and Required Packages
+### [Option 1] Working on Colab (Recommended)
+We recommend working on Colab with GPU enabled since this assignment needs a fair amount of compute.
+In Colab, we can enforce using GPU by clicking `Runtime -> Change Runtime Type -> Hardware accelerator` and selecting `GPU`.
+The dependencies will be installed once the notebooks are excuted.
+
+The Colab version of this assigment can be found at [this Drive link](https://drive.google.com/drive/folders/114eYaGQhXI9lU0t1WykzEXflgehBvf6l?usp=sharing), please logining with you Berkeley email to view it.
+You should make a copy of the folder to your Google Drive otherwise the outputs will not be saved.
+Once the folder is copied, you can start working by clicking a Jupyter Notebook and openning it in Colab.
+
+### [Option 2] Install Anaconda and Required Packages (Slow)
 The preferred approach for installing all the assignment dependencies is to use
 [Anaconda](https://www.anaconda.com/products/individual), which is a Python distribution
 that includes many of the most popular Python packages for science, math,
@@ -14,7 +23,7 @@ engineering and data analysis. Once you install Anaconda you can run the followi
 command inside the homework directory to install the required packages for this homework:
 
 ```bash
-conda env create -f cs182_hw3.yaml
+conda env create -f cs182_hw3.yml
 ```
 
 Once you have all the packages installed, run the following command **every time**
@@ -23,7 +32,18 @@ to activate the environment when you work on the homework.
 conda activate cs182_hw3
 ```
 
-### [Option 2] Working on a Virtual Machine
+If you have access to GPU then you can uninstall cpu version and install cuda version PyTorch.
+```bash
+conda uninstall cpuonly pytorch
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+```
+
+If you are on macos, run the following command to install `wget` and `md5sha1sum`.
+```bash
+brew install md5sha1sum wget
+```
+
+### [Option 3] Working on a Virtual Machine (Slow)
 This assignment is provided pre-setup with a VirtualBox image. Installation Instructions:
 1. Follow [the instructions here](https://www.virtualbox.org/manual/ch02.html) to install VirtualBox if it is not already installed.
 2. [Download the VirtualBox image here](https://drive.google.com/file/d/1Upo6wDUR0QiQLwyzh4pWwdnoG01VFBnv/view?usp=sharing)
@@ -45,14 +65,14 @@ Solutions:
 - Try increasing the number of allocated CPUs: Under Settings→System→Processor
 - Try [increasing the amount of allocated memory:](https://superuser.com/questions/926339/how-to-change-the-ram-allocated-to-an-os-in-virtualbox)
 
-### Download data:
+### Download data (For option 2 and 3):
 To download the data, run the following command from the assignment root directory:
 ```bash
 bash download_data.sh
 ```
 If you get the error "bash: ./download_data.sh: Permission denied" run `chmod +x download_data.sh` and try again.
 
-### Start Jupyter Notebook
+### Start Jupyter Notebook (For option 2 and 3)
 After you download data, you should start the IPython notebook server
 from the homework 1 directory with the following command:
 
@@ -61,13 +81,9 @@ jupyter notebook
 ```
 
 ## Submitting your work:
-Once you are done working run the `collect_submission.sh` script;
-this will produce a file called `assignment3.zip`.
+Once you are done working, run the `collect_submission.ipynb` notebook if you worked on Colab; this will produce a file called `assignment3.zip` and download it to your computer from Colab.
 
-If you encounter "zip not found" error on macos, run the following command.
-```bash
-brew install zip
-```
+If you worked locally, then run the `collect_submission.sh` script; this will produce a file called `assignment3.zip`.
 
 Check that your submission contains:
 - "1 Language Modeling.ipynb" and "2 Summarization.ipynb"

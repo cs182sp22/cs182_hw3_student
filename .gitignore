@@ -209,3 +209,5 @@ dataset/*
 submission_logs/*
 bert_models/
 *.zip
+best_models/*
+submission_logs/*
